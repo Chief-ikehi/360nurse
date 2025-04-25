@@ -1,6 +1,6 @@
 # 360Nurse - Healthcare Platform
 
-360Nurse is a nurse-led remote patient monitoring platform designed to deliver quality healthcare in underserved regions, with a core focus on Africa. This project is a demonstration of the platform's capabilities.
+360Nurse is a nurse-led remote patient monitoring platform designed to deliver quality healthcare services to everyone. This project is a demonstration of the platform's capabilities with subscription-based access to healthcare services.
 
 ## Features
 

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  
+
   const footerSections = [
     {
       title: "Platform",
@@ -19,6 +19,7 @@ const Footer: React.FC = () => {
       title: "Company",
       links: [
         { name: "About Us", href: "/about" },
+        { name: "Contact Us", href: "/contact" },
         { name: "Careers", href: "/careers" },
         { name: "Blog", href: "/blog" },
         { name: "Press", href: "/press" },
@@ -43,7 +44,7 @@ const Footer: React.FC = () => {
       ]
     }
   ];
-  
+
   const socialLinks = [
     {
       name: "Twitter",
@@ -93,7 +94,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1 sm:col-span-2 lg:col-span-3">
             <div className="flex items-center">
               <svg className="h-8 w-8 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                   d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
               <span className="text-xl font-bold sm:text-2xl">
@@ -101,15 +102,15 @@ const Footer: React.FC = () => {
               </span>
             </div>
             <p className="mt-4 text-gray-400 text-sm">
-              A nurse-led remote patient monitoring platform designed to deliver quality healthcare in underserved regions.
+              A nurse-led remote patient monitoring platform designed to deliver quality healthcare services to everyone.
             </p>
-            
+
             {/* Social Links (larger on mobile) */}
             <div className="mt-6 flex space-x-5">
               {socialLinks.map((item) => (
-                <a 
-                  key={item.name} 
-                  href={item.href} 
+                <a
+                  key={item.name}
+                  href={item.href}
                   className="text-gray-400 hover:text-teal-400 transition-colors duration-300 h-8 w-8 sm:h-6 sm:w-6"
                   aria-label={item.name}
                 >
@@ -118,7 +119,7 @@ const Footer: React.FC = () => {
               ))}
             </div>
           </div>
-          
+
           {/* Footer sections in columns */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-9 grid grid-cols-2 gap-8 sm:grid-cols-4">
             {footerSections.map((section) => (
@@ -129,8 +130,8 @@ const Footer: React.FC = () => {
                 <ul className="mt-4 space-y-3">
                   {section.links.map((link) => (
                     <li key={link.name}>
-                      <Link 
-                        href={link.href} 
+                      <Link
+                        href={link.href}
                         className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors duration-200"
                       >
                         {link.name}
@@ -142,7 +143,7 @@ const Footer: React.FC = () => {
             ))}
           </div>
         </div>
-        
+
         {/* Newsletter section */}
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="grid grid-cols-1 gap-y-6 lg:grid-cols-3 lg:gap-x-8 lg:items-center">
@@ -178,7 +179,7 @@ const Footer: React.FC = () => {
             </form>
           </div>
         </div>
-        
+
         {/* Bottom bar */}
         <div className="mt-8 pt-6 border-t border-gray-800">
           <div className="flex flex-col-reverse gap-4 sm:flex-row sm:justify-between sm:items-center">

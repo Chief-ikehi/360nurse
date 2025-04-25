@@ -28,15 +28,15 @@ const Home: NextPage = () => {
               >
                 <polygon points="50,0 100,0 50,100 0,100" />
               </svg>
-              
+
               <div className="pt-10 mx-auto max-w-7xl px-4 sm:pt-12 sm:px-6 md:pt-16 lg:pt-20 lg:px-8 xl:pt-28">
                 <div className="sm:text-center lg:text-left">
                   <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                    <span className="block">Healthcare for</span>
-                    <span className="block text-teal-600">Underserved Regions</span>
+                    <span className="block">Quality Healthcare</span>
+                    <span className="block text-teal-600">At Your Fingertips</span>
                   </h1>
                   <p className="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                    360Nurse is a nurse-led remote patient monitoring platform designed to deliver quality healthcare in underserved regions, with a core focus on Africa.
+                    360Nurse is a nurse-led remote patient monitoring platform designed to deliver quality healthcare services to everyone, anywhere.
                   </p>
                   <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                     <div className="rounded-md shadow">
@@ -66,7 +66,7 @@ const Home: NextPage = () => {
                 {/* Purple decorative elements */}
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500 opacity-20 rounded-full"></div>
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500 opacity-20 rounded-full"></div>
-                
+
                 <h2 className="text-2xl font-bold mb-6 relative z-10">Key Features</h2>
                 <ul className="space-y-3 relative z-10">
                   <li className="flex items-center">
@@ -98,7 +98,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        
+
         {/* We'll update the rest of the page content later */}
         <FeaturedSection />
         <StatsSection />

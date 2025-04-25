@@ -12,15 +12,15 @@ interface StatProps {
   prefix?: string;
 }
 
-const CountUpStat: React.FC<StatProps> = ({ 
-  value, 
-  label, 
-  duration = 2000, 
-  suffix = "", 
-  prefix = "" 
+const CountUpStat: React.FC<StatProps> = ({
+  value,
+  label,
+  duration = 2000,
+  suffix = "",
+  prefix = ""
 }) => {
   const [count, setCount] = useState(0);
-  
+
   useEffect(() => {
     const step = Math.ceil(value / (duration / 50));
     let current = 0;
@@ -33,12 +33,12 @@ const CountUpStat: React.FC<StatProps> = ({
         setCount(current);
       }
     }, 50);
-    
+
     return () => {
       clearInterval(timer);
     };
   }, [value, duration]);
-  
+
   return (
     <div className="text-center">
       <div className="relative">
@@ -68,17 +68,17 @@ const StatsSection: React.FC = () => {
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-40 h-40 bg-purple-200 rounded-full opacity-20 transform -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-60 h-60 bg-teal-200 rounded-full opacity-20 transform translate-x-1/4 translate-y-1/4"></div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Our <span className="text-teal-600">Impact</span>
           </h2>
           <p className="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
-            360Nurse is making a real difference in healthcare accessibility across underserved regions.
+            360Nurse is making a real difference in healthcare accessibility for people across Nigeria.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <CountUpStat
@@ -90,13 +90,13 @@ const StatsSection: React.FC = () => {
             />
           ))}
         </div>
-        
+
         <div className="mt-16 bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid md:grid-cols-2">
             <div className="p-8 md:p-12 bg-gradient-to-br from-teal-500 to-teal-600 text-white">
               <h3 className="text-2xl font-bold mb-4">Transforming Healthcare Delivery</h3>
               <p className="text-teal-50 mb-6">
-                Our platform bridges the gap between patients and healthcare providers in regions with limited access to medical facilities.
+                Our platform bridges the gap between patients and healthcare providers, making quality healthcare accessible to everyone.
               </p>
               <ul className="space-y-2">
                 {[
@@ -117,7 +117,7 @@ const StatsSection: React.FC = () => {
             <div className="p-8 md:p-12 bg-white">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
               <p className="text-gray-600 mb-6">
-                360Nurse is committed to expanding healthcare access to the most remote and underserved communities across Africa and beyond.
+                360Nurse is committed to expanding healthcare access to everyone across Nigeria through innovative technology solutions.
               </p>
               <div className="bg-teal-50 p-4 rounded-lg border border-teal-100">
                 <p className="text-gray-700 italic">

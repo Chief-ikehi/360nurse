@@ -75,7 +75,7 @@ const FeaturesSection: React.FC = () => {
             Core <span className="text-teal-600">Functionalities</span>
           </h2>
           <p className="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
-            Our platform tackles key healthcare delivery challenges in underserved regions through innovative technology solutions.
+            Our platform provides innovative healthcare solutions to everyone through cutting-edge technology.
           </p>
         </div>
 
@@ -89,7 +89,7 @@ const FeaturesSection: React.FC = () => {
             />
           ))}
         </div>
-        
+
         <div className="mt-16 flex justify-center">
           <div className="inline-flex rounded-md shadow">
             <a

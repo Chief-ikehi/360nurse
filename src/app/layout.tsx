@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "360Nurse - Healthcare Platform",
-  description: "A nurse-led remote patient monitoring platform for underserved regions",
+  description: "A nurse-led remote patient monitoring platform for quality healthcare services",
 };
 
 export default function RootLayout({

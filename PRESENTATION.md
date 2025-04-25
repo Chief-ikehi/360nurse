@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-360Nurse is a nurse-led remote patient monitoring platform designed to deliver quality healthcare in underserved regions. This demonstration showcases the core functionalities of the platform, focusing on how it enables remote patient monitoring, emergency response, and healthcare management.
+360Nurse is a nurse-led remote patient monitoring platform designed to deliver quality healthcare services to everyone. This demonstration showcases the core functionalities of the platform, focusing on how it enables remote patient monitoring, emergency response, and healthcare management through a subscription-based model.
 
 ## Key Features
 
@@ -20,6 +20,10 @@
 - **Patient Portal**: View vital signs, manage alerts, request assistance
 - **Nurse Dashboard**: Monitor assigned patients, respond to alerts
 - **Facility Admin Console**: Manage healthcare staff and patients
+
+### 4. Subscription Plans
+- **Basic Plan (₦2,500/month)**: Includes alerts and vital signs monitoring
+- **Premium Plan (₦5,000/month)**: Includes alerts, monitoring, and nurse consultations
 
 ## Technology Stack
 
@@ -54,6 +58,7 @@ In a real-world implementation, the platform would include:
 - Telemedicine capabilities
 - Advanced data analytics for predictive healthcare
 - Mobile applications for patients and healthcare providers
+- Additional subscription tiers with premium features
 
 ## Acknowledgements
 
