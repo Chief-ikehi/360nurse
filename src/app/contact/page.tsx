@@ -108,7 +108,7 @@ const ContactPage: React.FC = () => {
                     </div>
                     <div className="ml-4">
                       <h3 className="text-lg font-medium text-gray-900">Email</h3>
-                      <p className="mt-1 text-gray-600">info@360nurse.com</p>
+                      <p className="mt-1 text-gray-600">edoziedabeluchukwu@gmail.com</p>
                     </div>
                   </div>
 
