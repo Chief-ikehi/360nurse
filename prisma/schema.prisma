@@ -1,0 +1,222 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model with role-based access control
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  role          UserRole  @default(PATIENT)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  patient        Patient?
+  nurse          Nurse?
+  facilityAdmin  FacilityAdmin?
+  accounts       Account[]
+  sessions       Session[]
+}
+
+enum UserRole {
+  PATIENT
+  NURSE
+  FACILITY_ADMIN
+  EMERGENCY_SERVICE
+  ADMIN
+}
+
+// NextAuth models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Patient model
+model Patient {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  address   String?
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vitalRecords   VitalRecord[]
+  nursePatients  NursePatient[]
+  emergencyAlerts EmergencyAlert[]
+}
+
+// Nurse model
+model Nurse {
+  id                String        @id @default(cuid())
+  userId            String        @unique
+  licenseNumber     String?
+  specialization    String?
+  isVerified        Boolean       @default(false)
+  verificationDate  DateTime?
+  isIndependent     Boolean       @default(false)
+  facilityId        String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  // Relations
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  facility       Facility?        @relation(fields: [facilityId], references: [id])
+  nursePatients  NursePatient[]
+  emergencyAlerts EmergencyAlert[]
+}
+
+// Facility model
+model Facility {
+  id        String   @id @default(cuid())
+  name      String
+  address   String?
+  phone     String?
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  nurses         Nurse[]
+  facilityAdmins FacilityAdmin[]
+}
+
+// Facility Admin model
+model FacilityAdmin {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  facilityId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relations
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  facility Facility @relation(fields: [facilityId], references: [id])
+}
+
+// Nurse-Patient relationship
+model NursePatient {
+  id        String   @id @default(cuid())
+  nurseId   String
+  patientId String
+  assignedAt DateTime @default(now())
+
+  // Relations
+  nurse    Nurse    @relation(fields: [nurseId], references: [id], onDelete: Cascade)
+  patient  Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  @@unique([nurseId, patientId])
+}
+
+// Vital Record model
+model VitalRecord {
+  id          String    @id @default(cuid())
+  patientId   String
+  bloodPressure String?
+  heartRate   Int?
+  temperature Float?
+  oxygenLevel Float?
+  recordedAt  DateTime  @default(now())
+  isSimulated Boolean   @default(true)
+
+  // Relations
+  patient     Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+// Emergency Alert model
+model EmergencyAlert {
+  id          String    @id @default(cuid())
+  patientId   String
+  nurseId     String?
+  status      AlertStatus @default(PENDING)
+  description String?
+  location    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  resolvedAt  DateTime?
+
+  // Relations
+  patient     Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  nurse       Nurse?    @relation(fields: [nurseId], references: [id])
+  emergencyService EmergencyService? @relation(fields: [emergencyServiceId], references: [id])
+  emergencyServiceId String?
+}
+
+enum AlertStatus {
+  PENDING
+  ACKNOWLEDGED
+  DISPATCHED
+  RESOLVED
+  CANCELLED
+}
+
+// Emergency Service model
+model EmergencyService {
+  id          String    @id @default(cuid())
+  name        String
+  type        ServiceType
+  address     String?
+  phone       String?
+  email       String?
+  latitude    Float?
+  longitude   Float?
+  serviceRadius Float?
+  operatingHours String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  emergencyAlerts EmergencyAlert[]
+}
+
+enum ServiceType {
+  AMBULANCE
+  HOSPITAL
+  POLICE
+  FIRE
+  OTHER
+}

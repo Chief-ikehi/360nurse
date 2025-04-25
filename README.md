@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 360Nurse - Healthcare Platform
+
+360Nurse is a nurse-led remote patient monitoring platform designed to deliver quality healthcare in underserved regions, with a core focus on Africa. This project is a demonstration of the platform's capabilities.
+
+## Features
+
+- **Remote Patient Monitoring**: Simulated tracking of patient vitals with automatic alerts
+- **Emergency Dispatch System**: GPS-enabled detection of nearest emergency service
+- **Facility Console**: Dashboard for hospitals and clinics to manage patients and nurses
+- **Nurse Verification**: Process for verifying freelance/home-care nurses
+
+## Technology Stack
+
+- **Frontend**: React, Next.js (App Router), TypeScript, Tailwind CSS
+- **Backend**: Next.js API Routes
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: NextAuth.js
+- **Deployment**: Render
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ and npm
+- PostgreSQL database
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/360nurse.git
+cd 360nurse
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up environment variables:
+
+Create a `.env` file in the root directory with the following variables:
+
+```
+DATABASE_URL="postgresql://username:password@localhost:5432/360nurse?schema=public"
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+```
+
+4. Set up the database:
+
+```bash
+npx prisma db push
+```
+
+5. Seed the database with initial data:
+
+```bash
+npm run seed
+```
+
+6. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo Accounts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The seed script creates the following demo accounts:
 
-## Learn More
+- **Admin**: admin@360nurse.com / admin123
+- **Patient**: patient@example.com / patient123
+- **Nurse**: nurse@example.com / nurse123
+- **Facility Admin**: facilityadmin@example.com / facilityadmin123
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is configured for deployment on Render. The `render.yaml` file contains the configuration for the web service and database.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+- `/src/app`: Next.js App Router pages and API routes
+- `/src/components`: Reusable UI components
+- `/src/lib`: Utility functions and services
+- `/src/context`: React context providers
+- `/prisma`: Database schema and migrations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- This project is a demonstration and does not include actual integration with wearable devices or emergency services.
+- The simulated vital signs and alerts are generated for demonstration purposes only.
