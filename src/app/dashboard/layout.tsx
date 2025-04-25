@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import DashboardHeader from "@/components/DashboardHeader";
+import { SubscriptionProvider } from "@/contexts/SubscriptionContext";
 
 export default function DashboardLayout({
   children,
@@ -36,41 +37,43 @@ export default function DashboardLayout({
   const userEmail = session?.user?.email || "";
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-teal-50 to-white">
-      {/* Use our custom dashboard header */}
-      <DashboardHeader 
-        userName={userName}
-        userEmail={userEmail}
-        userRole={userRole}
-      />
+    <SubscriptionProvider>
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-teal-50 to-white">
+        {/* Use our custom dashboard header */}
+        <DashboardHeader
+          userName={userName}
+          userEmail={userEmail}
+          userRole={userRole}
+        />
 
-      {/* Main content with improved styling */}
-      <main className="flex-grow py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Page Title - This would normally come from each page 
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-            <p className="text-gray-600 mt-1">
-              Welcome back, {userName}
+        {/* Main content with improved styling */}
+        <main className="flex-grow py-6 pt-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Page Title - This would normally come from each page
+            <div className="mb-6">
+              <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+              <p className="text-gray-600 mt-1">
+                Welcome back, {userName}
+              </p>
+            </div>
+            */}
+
+            {/* Content area with subtle shadow and rounded corners */}
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              {children}
+            </div>
+          </div>
+        </main>
+
+        {/* Simple footer */}
+        <footer className="bg-white border-t border-gray-200 py-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="text-center text-sm text-gray-500">
+              &copy; {new Date().getFullYear()} 360Nurse. All rights reserved.
             </p>
           </div>
-          */}
-          
-          {/* Content area with subtle shadow and rounded corners */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            {children}
-          </div>
-        </div>
-      </main>
-      
-      {/* Simple footer */}
-      <footer className="bg-white border-t border-gray-200 py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} 360Nurse. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </SubscriptionProvider>
   );
 }

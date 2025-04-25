@@ -28,6 +28,8 @@ model User {
   facilityAdmin  FacilityAdmin?
   accounts       Account[]
   sessions       Session[]
+  subscription   Subscription?
+  transactions   PaymentTransaction[]
 }
 
 enum UserRole {
@@ -76,12 +78,16 @@ model VerificationToken {
 
 // Patient model
 model Patient {
-  id        String   @id @default(cuid())
-  userId    String   @unique
-  address   String?
-  phone     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  dateOfBirth         DateTime?
+  gender              String?
+  phone               String?
+  address             String?
+  emergencyContact    String?
+  emergencyContactPhone String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 
   // Relations
   user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -219,4 +225,121 @@ enum ServiceType {
   POLICE
   FIRE
   OTHER
+}
+
+// Subscription models
+model SubscriptionPlan {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  currency    String   @default("NGN")
+  interval    SubscriptionInterval @default(MONTHLY)
+  features    String[]
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  subscriptions Subscription[]
+  transactions  PaymentTransaction[]
+}
+
+enum SubscriptionInterval {
+  MONTHLY
+  QUARTERLY
+  YEARLY
+}
+
+model Subscription {
+  id                String             @id @default(cuid())
+  userId            String             @unique
+  planId            String
+  status            SubscriptionStatus @default(ACTIVE)
+  startDate         DateTime           @default(now())
+  endDate           DateTime?
+  canceledAt        DateTime?
+  currentPeriodStart DateTime           @default(now())
+  currentPeriodEnd  DateTime
+  paymentMethod     String?
+  paymentReference  String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  // Relations
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan              SubscriptionPlan   @relation(fields: [planId], references: [id])
+  payments          Payment[]
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  UNPAID
+  TRIALING
+  EXPIRED
+}
+
+model Payment {
+  id                String        @id @default(cuid())
+  subscriptionId    String
+  amount            Float
+  currency          String        @default("NGN")
+  status            PaymentStatus @default(PENDING)
+  paymentMethod     String?
+  paymentReference  String?
+  transactionId     String?
+  paymentDate       DateTime?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  // Relations
+  subscription      Subscription  @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+}
+
+model PaymentTransaction {
+  id                String        @id @default(cuid())
+  reference         String        @unique
+  userId            String
+  planId            String
+  amount            Float
+  currency          String        @default("NGN")
+  status            PaymentStatus @default(PENDING)
+  paymentMethod     String?
+  transactionId     String?
+  paymentDate       DateTime?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  // Relations
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan              SubscriptionPlan @relation(fields: [planId], references: [id])
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+// Contact form submissions
+model ContactRequest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  status    ContactRequestStatus @default(NEW)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ContactRequestStatus {
+  NEW
+  IN_PROGRESS
+  RESOLVED
+  SPAM
 }

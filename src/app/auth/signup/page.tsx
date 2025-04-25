@@ -73,7 +73,7 @@ export default function SignUp() {
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <div className="flex-grow flex items-center justify-center bg-gradient-to-br from-white to-teal-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="flex-grow flex items-center justify-center bg-gradient-to-br from-white to-teal-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden pt-20">
         {/* Decorative elements */}
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-200 rounded-full opacity-20 transform translate-x-1/3 translate-y-1/3"></div>
         <div className="absolute top-0 left-0 w-64 h-64 bg-teal-200 rounded-full opacity-20 transform -translate-x-1/4 -translate-y-1/4"></div>

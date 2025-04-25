@@ -36,7 +36,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
 
   // Toggle menu open/closed with preventing propagation
   const toggleMenu = (e: React.MouseEvent): void => {
-    e.preventDefault(); 
+    e.preventDefault();
     e.stopPropagation();
     setIsMenuOpen(!isMenuOpen);
     // Close profile dropdown if open
@@ -53,7 +53,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   const handleSignOut = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     try {
       await signOut({ redirect: false });
       router.push("/");
@@ -103,7 +103,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   }, []);
 
   return (
-    <header className="bg-gradient-to-r from-teal-500 to-teal-600 shadow-md relative z-30">
+    <header className="bg-gradient-to-r from-teal-500 to-teal-600 shadow-md fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
@@ -156,6 +156,17 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                   onClick={handleLinkClick}
                 >
                   Alerts
+                </Link>
+                <Link
+                  href="/dashboard/patient/consultations"
+                  className={`font-medium text-base transition duration-150 ${
+                    isActive('/dashboard/patient/consultations')
+                      ? 'text-white border-b-2 border-purple-300'
+                      : 'text-teal-100 hover:text-white'
+                  }`}
+                  onClick={handleLinkClick}
+                >
+                  Consultations
                 </Link>
               </>
             )}
@@ -268,6 +279,19 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                   )}
 
                   <Link
+                    href="/dashboard/subscription"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={handleLinkClick}
+                  >
+                    <div className="flex items-center">
+                      <svg className="h-4 w-4 mr-2 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                      </svg>
+                      Subscription
+                    </div>
+                  </Link>
+
+                  <Link
                     href="/dashboard/settings"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     onClick={handleLinkClick}
@@ -334,7 +358,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
       {isMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="md:hidden bg-teal-600 fixed inset-x-0 top-16 z-30 shadow-lg overflow-y-auto max-h-[calc(100vh-4rem)]"
+          className="md:hidden bg-teal-600 fixed inset-x-0 top-16 z-40 shadow-lg overflow-y-auto max-h-[calc(100vh-4rem)]"
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
@@ -372,6 +396,17 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                   onClick={handleLinkClick}
                 >
                   Alerts
+                </Link>
+                <Link
+                  href="/dashboard/patient/consultations"
+                  className={`block px-3 py-2 rounded-md font-medium ${
+                    isActive('/dashboard/patient/consultations')
+                      ? 'bg-teal-700 text-white'
+                      : 'text-white hover:bg-teal-700 hover:text-white'
+                  }`}
+                  onClick={handleLinkClick}
+                >
+                  Consultations
                 </Link>
               </>
             )}
@@ -472,6 +507,17 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                   My Profile
                 </Link>
               )}
+
+              <Link
+                href="/dashboard/subscription"
+                className="flex w-full items-center px-3 py-2 rounded-md text-base font-medium text-white hover:bg-teal-700 transition-colors"
+                onClick={handleLinkClick}
+              >
+                <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+                Subscription
+              </Link>
 
               <Link
                 href="/dashboard/settings"

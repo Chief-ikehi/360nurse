@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       <Header />
 
       {/* Hero Section - Enhanced with new design and colors */}
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         <div className="relative bg-gradient-to-br from-teal-50 to-white overflow-hidden">
           <div className="max-w-7xl mx-auto">
             <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
@@ -99,7 +99,119 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        {/* We'll update the rest of the page content later */}
+        {/* SDG Section */}
+        <div className="bg-white py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                Supporting Sustainable Development Goals
+              </h2>
+              <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+                360Nurse is proud to contribute to the United Nations Sustainable Development Goals
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
+              <div className="pt-6">
+                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                  <div className="-mt-6">
+                    <div>
+                      <span className="inline-flex items-center justify-center p-3 bg-teal-500 rounded-md shadow-lg">
+                        <svg className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <h3 className="mt-8 text-xl font-medium text-gray-900 tracking-tight">SDG 3 – Good Health and Well-Being</h3>
+                    <p className="mt-2 text-base text-gray-500">
+                      "Ensure healthy lives and promote well-being for all at all ages"
+                    </p>
+                    <ul className="mt-5 space-y-3">
+                      <li className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-5 w-5 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-base text-gray-500">Remote monitoring improves access to timely care, especially in underserved areas</p>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-5 w-5 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-base text-gray-500">Reduces preventable deaths through early alerts and triage</p>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-5 w-5 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-base text-gray-500">Supports management of chronic illnesses and reduces health inequalities</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                  <div className="-mt-6">
+                    <div>
+                      <span className="inline-flex items-center justify-center p-3 bg-purple-500 rounded-md shadow-lg">
+                        <svg className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                      </span>
+                    </div>
+                    <h3 className="mt-8 text-xl font-medium text-gray-900 tracking-tight">SDG 17 – Partnerships for the Goals</h3>
+                    <p className="mt-2 text-base text-gray-500">
+                      "Strengthen the means of implementation and revitalize the global partnership for sustainable development"
+                    </p>
+                    <ul className="mt-5 space-y-3">
+                      <li className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-base text-gray-500">Encourages collaboration between nurses, tech partners, government, NGOs, and donors</p>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-base text-gray-500">Scalable through public-private partnerships and grant-backed pilots</p>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <p className="ml-3 text-base text-gray-500">Building technology that connects different stakeholders in the healthcare ecosystem</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 text-center">
+              <Link
+                href="/impact"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700"
+              >
+                Learn More About Our Impact
+              </Link>
+            </div>
+          </div>
+        </div>
+
         <FeaturedSection />
         <StatsSection />
         <CtaSection />

@@ -10,7 +10,7 @@ const PricingPage: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-teal-500 to-teal-600 py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

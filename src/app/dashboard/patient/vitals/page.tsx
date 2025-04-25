@@ -13,6 +13,7 @@ import {
   ResponsiveContainer
 } from "recharts";
 import toast from "react-hot-toast";
+import FeatureGuard from "@/components/FeatureGuard";
 
 export default function VitalsHistoryPage() {
   const { data: session } = useSession();
@@ -115,8 +116,9 @@ export default function VitalsHistoryPage() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-gradient-to-r from-teal-500 to-teal-600 shadow-md overflow-hidden sm:rounded-lg">
+    <FeatureGuard feature="vital_signs_monitoring">
+      <div className="space-y-6">
+        <div className="bg-gradient-to-r from-teal-500 to-teal-600 shadow-md overflow-hidden sm:rounded-lg">
         <div className="px-6 py-6 sm:px-8 flex justify-between items-center">
           <div className="flex items-center">
             <div className="flex-shrink-0 bg-white p-2 rounded-full mr-4">
@@ -613,5 +615,6 @@ export default function VitalsHistoryPage() {
         </div>
       </div>
     </div>
+    </FeatureGuard>
   );
 }

@@ -6,6 +6,9 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Starting seeding...');
 
+  // Create subscription plans
+  await createSubscriptionPlans();
+
   // Create a facility
   const facility = await prisma.facility.upsert({
     where: { id: 'demo-facility' },
@@ -120,14 +123,14 @@ async function main() {
 
   // Create some vital records for the patient
   const patient = await prisma.patient.findUnique({ where: { userId: patientUser.id } });
-  
+
   if (patient) {
     // Create a few vital records with different timestamps
     const now = new Date();
-    
+
     for (let i = 0; i < 10; i++) {
       const recordTime = new Date(now.getTime() - i * 3600000); // Each record 1 hour apart
-      
+
       await prisma.vitalRecord.create({
         data: {
           patientId: patient.id,
@@ -140,7 +143,7 @@ async function main() {
         },
       });
     }
-    
+
     console.log('Created 10 vital records for patient');
   }
 
@@ -167,7 +170,7 @@ async function main() {
   // Create an emergency alert
   if (patient && nurseUser) {
     const nurse = await prisma.nurse.findUnique({ where: { userId: nurseUser.id } });
-    
+
     if (nurse) {
       const alert = await prisma.emergencyAlert.create({
         data: {
@@ -179,12 +182,78 @@ async function main() {
           emergencyServiceId: emergencyService.id,
         },
       });
-      
+
       console.log('Created emergency alert');
     }
   }
 
   console.log('Seeding completed.');
+}
+
+async function createSubscriptionPlans() {
+  console.log('Creating subscription plans...');
+
+  // Basic Plan
+  const basicPlan = await prisma.subscriptionPlan.upsert({
+    where: { id: 'basic-plan' },
+    update: {
+      price: 2500,
+      features: [
+        'Health alerts',
+        'Vital signs monitoring',
+        'Emergency alerts',
+      ],
+    },
+    create: {
+      id: 'basic-plan',
+      name: 'Basic Plan',
+      description: 'Essential health monitoring for individuals',
+      price: 2500,
+      currency: 'NGN',
+      interval: 'MONTHLY',
+      features: [
+        'Health alerts',
+        'Vital signs monitoring',
+        'Emergency alerts',
+      ],
+      isActive: true,
+    },
+  });
+
+  console.log('Created/updated Basic Plan');
+
+  // Premium Plan
+  const premiumPlan = await prisma.subscriptionPlan.upsert({
+    where: { id: 'premium-plan' },
+    update: {
+      price: 5000,
+      features: [
+        'Health alerts',
+        'Vital signs monitoring',
+        'Emergency alerts',
+        'Nurse consultations',
+        'Priority support',
+      ],
+    },
+    create: {
+      id: 'premium-plan',
+      name: 'Premium Plan',
+      description: 'Complete healthcare solution with professional support',
+      price: 5000,
+      currency: 'NGN',
+      interval: 'MONTHLY',
+      features: [
+        'Health alerts',
+        'Vital signs monitoring',
+        'Emergency alerts',
+        'Nurse consultations',
+        'Priority support',
+      ],
+      isActive: true,
+    },
+  });
+
+  console.log('Created/updated Premium Plan');
 }
 
 main()
